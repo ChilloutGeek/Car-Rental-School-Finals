@@ -4,4 +4,18 @@
 
 <a href="{% url 'logout' %}"}> Logout </a>
 
+{% for car in cars %}
+<ul>
+    <li>{{ car.Model }} </li>
+    <li> {{ car.Class }}</li>
+    <li> {{ car.Manufacturer }}</li>
+    <li>{{ car.Maintenance }}</li>
+</ul>
+    {% endfor %}
+
+    <form class="form-inline" method ="POST">
+        {% csrf_token %}    
+        {{form.as_p}}
+        <input type="submit" name="rent">
+    </form>
 {% endblock %}

@@ -5,30 +5,42 @@ User = settings.AUTH_USER_MODEL
 # Create your models here.
 
 class Manufacturer(models.Model):
-    Country = models.CharField(max_length=200)
-    Sales_Name = models.CharField(max_length=200)
-    Sales_RepNumber = models.IntegerField()
-
-class Car(models.Model):
-    Renter = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, null=True)
-    Model = models.CharField(max_length=200)
-    Class = models.IntegerField()
+    ManufacturerName = models.CharField(max_length=200, null=True)
+    Country = models.CharField(max_length=200, null=True)
+    Sales_Name = models.CharField(max_length=200, null=True)
+    Sales_RepNumber = models.IntegerField(null=True)
 
     def __str__(self):
-        return str(self.Model)
+        return str(self.ManufacturerName)
+
 
 class MaintenanceEvent(models.Model):
-    Car = models.ForeignKey(Car, on_delete=models.CASCADE)
-    Date = models.DateTimeField()
+    RepairNumber = models.IntegerField(null=True) 
+    Date = models.DateTimeField(null=True)
     Procedure = models.CharField(max_length=500)
-    Mileage = models.IntegerField()
-    Repair_Time = models.IntegerField()
+    Mileage = models.IntegerField(null=True)
+    Repair_Time = models.IntegerField(null=True)
+
+    def __str__(self):
+        return str(self.Procedure)
+
+class Car(models.Model):
+    Manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, null=True)
+    Model = models.CharField(max_length=200,null=True)
+    Class = models.IntegerField(null=True)
+    Maintenance = models.ManyToManyField(MaintenanceEvent, null=True)
+
+    def __str__(self):
+        return str(self.Model)  
 
 class Rental(models.Model):
-    Car = models.OneToOneField(Car, on_delete=models.CASCADE)
-    ReturnDate = models.DateTimeField()
-    RentalDate = models.DateTimeField()
-    TotalCost = models.IntegerField()
+    Car = models.OneToOneField(Car, on_delete=models.CASCADE, null=True)
+    Renter = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, null=True)
+    ReturnDate = models.DateTimeField(null=True)
+    RentalDate = models.DateTimeField(null=True)
+    TotalCost = models.IntegerField(null=True)
 
+    def __str__(self):
+        return str(self.TotalCost)
 
 

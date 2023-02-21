@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from customer.models import CustomerProfile
 User = settings.AUTH_USER_MODEL
 # Create your models here.
 
@@ -10,9 +10,12 @@ class Manufacturer(models.Model):
     Sales_RepNumber = models.IntegerField()
 
 class Car(models.Model):
-    User = models.ForeignKey(User, on_delete=models.CASCADE)
+    Renter = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, null=True)
     Model = models.CharField(max_length=200)
     Class = models.IntegerField()
+
+    def __str__(self):
+        return str(self.Model)
 
 class MaintenanceEvent(models.Model):
     Car = models.ForeignKey(Car, on_delete=models.CASCADE)

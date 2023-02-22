@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
+{% include 'nav.html' %}
+
 {% block title %} Rental Home {% endblock %}
+
+
+
 {% block content %}
+
+<body>
+    <div class="container container-fluid">
+        
+    </div>
+
+
+
+</body>
+
 
 <a href="{% url 'logout' %}"}> Logout </a>
 
+<<<<<<< Updated upstream
 {% for car in cars %}
 <ul>
     <li>{{ car.Model }} </li>
@@ -18,4 +34,8 @@
         {{form.as_p}}
         <input type="submit" name="rent">
     </form>
+=======
+
+
+>>>>>>> Stashed changes
 {% endblock %}

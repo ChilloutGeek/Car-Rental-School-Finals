@@ -6,9 +6,12 @@
 
 <div class="container">
     <h1>Car Catalogue</h1>
-    {% for car in cars.all %}
-            <p> {{ car.Model }} </p>
-            <p> {{ car.Class }} </p>
+    {% for rental in rentals %}
+            <p> {{ rental.Renter}} </p>
+            <p> {{ rental.Car }} </p>
+            <p> {{ rental.ReturnDate }} </p>
+            <p> {{ rental.RentalDate }} </p>
+            <p> {{ rental.TotalCost }} </p>
     {% endfor %}
     
 

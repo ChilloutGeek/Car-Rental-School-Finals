@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-from .models import CustomerProfile
+from customer.models import CustomerProfile
+from rental.models import Car, Rental
 from .forms import LoginForm, SignUpForm
 
 # Create your views here.
@@ -44,3 +46,16 @@ def login_acc(request):
 def logout_acc(request):
     logout(request)
     return redirect('login')
+
+def profile_page(request,pk):
+    
+    #get user's car rents
+    user = request.user
+    profile = CustomerProfile.objects.get(user=user)
+    rentals = Rental.objects.filter(Renter=profile)
+
+
+
+    return render(request, 'customer/customer.html', {'rentals':rentals})
+
+

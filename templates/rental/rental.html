@@ -3,6 +3,8 @@
 {% include "nav.html" %}
 <body>
     <div class="container container-fluid">
+        <a href="{% url 'profile' currentcustomer.id %}">Profile</a>
+
         
     </div>
 
@@ -11,14 +13,14 @@
 </body>
 
 
-<a href="{% url 'logout' %}"}> Logout </a>
+<a href="{% url 'logout' %}"> Logout </a>
 
 {% for car in cars %}
 <ul>
     <a href="{% url 'rentacar' car.id %}">Rent a car</a>
-    <li>{{ car.Model }} </li>
+    <li>{{ car.Manufacturer }} </li>
+    <li> {{ car.Model }}</li>
     <li> {{ car.Class }}</li>
-    <li> {{ car.Manufacturer }}</li>
     <li>{{ car.Maintenance }}</li>
 </ul>
     {% endfor %}

@@ -12,23 +12,26 @@ class HomeRentalView(LoginRequiredMixin, View):
 
     def get(self, request):
         
+        #get car data 
         cars = Car.objects.all()
         form = RentalForm()
         currentcustomer = CustomerProfile.objects.get(user=self.request.user)
         
+        #search functionality
         search_text = request.GET.get('search_text', None)
-
         if search_text:
             cars = Car.objects.get(Model__contains=search_text)
 
-        return render(request, 'rental/rental.html', {'cars':cars, 'form':form, 'currentcustomer':currentcustomer})
+        return render(request, 'rental/rental.html', {'cars':cars, 'form':form, 'currentcustomer':currentcustomer,})
 
     def post(self, request, pk):
 
+        #POST interaction for renting a car
         currentcustomer = CustomerProfile.objects.get(user=self.request.user)
 
         form = RentalForm(data=request.POST)
 
+        #Saving form data when renting 
         if form.is_valid():
             rentalcreate = form.save(commit=False)
             rentalcreate.Car = Car.objects.get(pk=pk)

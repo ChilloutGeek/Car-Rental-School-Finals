@@ -28,16 +28,16 @@ class Car(models.Model):
     Manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, null=True)
     Model = models.CharField(max_length=200,null=True)
     Class = models.IntegerField(null=True)
-    Maintenance = models.ManyToManyField(MaintenanceEvent, null=True)
+    Maintenance = models.ManyToManyField(MaintenanceEvent)
 
     def __str__(self):
         return str(self.Model)  
 
 class Rental(models.Model):
-    Car = models.OneToOneField(Car, on_delete=models.CASCADE, null=True)
+    Car = models.ForeignKey(Car, on_delete=models.CASCADE, null=True)
     Renter = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, null=True)
-    ReturnDate = models.DateTimeField(null=True)
-    RentalDate = models.DateTimeField(null=True)
+    ReturnDate = models.DateTimeField(auto_now=True, null=True)
+    RentalDate = models.DateTimeField(auto_now_add=True, null=True)
     TotalCost = models.IntegerField(null=True)
 
     def __str__(self):

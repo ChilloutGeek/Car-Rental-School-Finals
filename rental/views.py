@@ -22,7 +22,7 @@ class HomeRentalView(LoginRequiredMixin, View):
         if search_text:
             cars = Car.objects.get(Model__contains=search_text)
 
-        return render(request, 'rental/rental.html', {'cars':cars, 'form':form, 'currentcustomer':currentcustomer,})
+        return render(request, 'rental/rental.html', {'cars':cars, 'form':form, 'currentcustomer':currentcustomer})
 
     def post(self, request, pk):
 
@@ -39,7 +39,40 @@ class HomeRentalView(LoginRequiredMixin, View):
             rentalcreate.save()
         return redirect('rental')
 
-class RentalCarView(LoginRequiredMixin, View):
+class RentaCarView(LoginRequiredMixin, View):
+    
+    login_url = 'login'
+
+
+    def get(self, request, pk):
+        
+        current_car = Car.objects.get(pk=pk)
+        current_user = CustomerProfile.objects.get(user=request.user)
+        customer_rents = Rental.objects.filter(Renter=current_user)
+
+        instance = Rental.objects.create(Car=current_car, Renter=current_user)
+
+
+        form = RentalForm(instance=instance)
+        return render(request, 'rental/rentacar.html', {'form':form, 'customer_rents':customer_rents, 'current_user':current_user, 'car':current_car})
+
+
+    def post(self, request, pk):
+
+        current_car = Car.objects.get(pk=pk)
+        form = RentalForm(data=request.POST)
+
+        #Saving form data when renting 
+        if form.is_valid():
+            rentalcreate = form.save(commit=False)
+            rentalcreate.Car = current_car
+            rentalcreate.Renter = current_user
+            rentalcreate.save()
+        return redirect('rental')
+
+        
+
+class UpdateRentalView(LoginRequiredMixin, View):
         
         login_url = 'login'
 
@@ -50,12 +83,12 @@ class RentalCarView(LoginRequiredMixin, View):
 
             currentcustomer = CustomerProfile.objects.get(user=self.request.user)
 
-            return render(request, 'rental/rentacar.html', {'rental':rental, 'form':form, 'currentcustomer':currentcustomer})
+            return render(request, 'rental/editrent.html', {'rental':rental, 'form':form, 'currentcustomer':currentcustomer})
         
         def post(self, request, pk):
             
             rental = Rental.objects.get(pk=pk)
-            currentscustomer = CustomerProfile.objects.get(user=self.request.user)
+            currentcustomer = CustomerProfile.objects.get(user=self.request.user)
             form = RentalForm(request.POST, instance=rental)
 
             if form.is_valid():

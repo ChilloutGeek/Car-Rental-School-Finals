@@ -3,6 +3,7 @@
 {% include "nav.html" %}
 <form method ="POST" action="">
     {% csrf_token %}
+    <p> are you sure? </p>
     {{form}}
     <input type="submit" name="rent a car">
 </form>

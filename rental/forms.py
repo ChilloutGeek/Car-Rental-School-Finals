@@ -7,3 +7,8 @@ class RentalForm(forms.ModelForm):
     class Meta:
         model = Rental
         fields = ['Car', 'Renter']
+
+class FinishRentForm(forms.ModelForm):
+    class Meta:
+        model = Rental
+        fields = ['FinishedRent']

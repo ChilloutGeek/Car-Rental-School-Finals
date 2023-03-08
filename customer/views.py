@@ -52,9 +52,7 @@ def profile_page(request,pk):
     #get user's car rents
     user = request.user
     profile = CustomerProfile.objects.get(user=user)
-    rentals = Rental.objects.filter(Renter=profile)
-
-
+    rentals = Rental.objects.filter(Renter=profile).exclude(FinishedRent=1)
 
     return render(request, 'customer/customer.html', {'rentals':rentals})
 

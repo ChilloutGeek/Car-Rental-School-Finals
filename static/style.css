@@ -1,0 +1,11 @@
+.my-border{
+    
+    border-style: solid;
+    border-color:darkseagreen;
+    border-width: 4px 11px 4px 35px;
+    width: 80%;
+    color: white;
+    text-align: center;
+    font-family:Verdana;
+
+}

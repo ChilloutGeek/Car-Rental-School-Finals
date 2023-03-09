@@ -10,8 +10,8 @@
                 </div>
 
                 <div class="col-md-2">
-                    
-                    Profile Pic: <img src="..." alt="..." class="img-thumbnail">
+                    Hello {{currentcustomer.user}}!
+                    <img src="{{ currentcustomer.dp.url }}" alt="..." class="img-thumbnail">
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
             {% for car in cars %}
             <div class="col-sm">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="{{ car.CarPicture.url }}" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">{{ car.Model }}</h5>
                       <p class="card-text">Manufacturer: {{ car.Manufacturer }}</p>

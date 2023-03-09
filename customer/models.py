@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class CustomerProfile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
-  dp = models.ImageField(upload_to="images")
+  dp = models.ImageField(upload_to="dp/", null=True)
   about = models.CharField(max_length=150, default="I am a customer", null=True)
   address = models.CharField(max_length=500, null=True)
   credit_rating = models.IntegerField(null=True)

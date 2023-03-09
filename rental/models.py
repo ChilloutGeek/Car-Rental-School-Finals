@@ -25,6 +25,7 @@ class MaintenanceEvent(models.Model):
         return str(self.Procedure)
 
 class Car(models.Model):
+    CarPicture = models.ImageField(upload_to='cars/', blank=True)
     Manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, null=True)
     Model = models.CharField(max_length=200,null=True)
     Class = models.IntegerField(null=True)

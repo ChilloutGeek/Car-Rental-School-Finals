@@ -1,27 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
-{% include "nav.html" %}
-<body>
-    <div class="container container-fluid">
-        <a href="{% url 'profile' currentcustomer.id %}">Profile</a>
+<div class="container">
+    <body>
+        {% include "nav.html" %}
+        <div class="row" style="margin:50px">
+            <div class="row d-flex flex-row-reverse">
+                <div class="col-md-10">
+                <a href="{% url 'profile' currentcustomer.id %}">Profile</a>
+                </div>
 
-        
-    </div>
-
-
-
-</body>
-
-
-<a href="{% url 'logout' %}"> Logout </a>
-
-{% for car in cars %}
-<ul>
-    <a href="{% url 'rentacar' car.id %}">Rent a car</a>
-    <li>{{ car.Manufacturer }} </li>
-    <li> {{ car.Model }}</li>
-    <li> {{ car.Class }}</li>
-    <li> No. of Stocks: {{car.Stock_Number}}</li>
-</ul>
-    {% endfor %}
+                <div class="col-md-2">
+                    
+                    Profile Pic: <img src="..." alt="..." class="img-thumbnail">
+                </div>
+            </div>
+        </div>
+                
+        <div class="row2 d-flex flex-row-reverse" style="margin:50px">
+            {% for car in cars %}
+            <div class="col-sm">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ car.Model }}</h5>
+                      <p class="card-text">Manufacturer: {{ car.Manufacturer }}</p>
+                      <p class="card-text">Class: {{ car.Class }}</p>
+                      <p class="card-text">No. of Stocks: {{car.Stock_Number}}</p>
+                      <a href="{% url 'rentacar' car.id %}" class="btn btn-primary">Rent a car</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>   
+    </body>
+</div>
 {% endblock %}

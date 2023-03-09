@@ -1,37 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
     <body>
         {% include "nav.html" %}
         <div class="row" style="margin:50px">
-            <div class="row d-flex flex-row-reverse">
-                <div class="col-md-10">
-                <a href="{% url 'profile' currentcustomer.id %}">Profile</a>
+            <div class="row d-flex flex-row-reverse my-border">
+                <div class="col-7">
+                <h1><b> Welcome {{currentcustomer.user}}! </h1> </b>
+                <h6>To view your profile, press the Profile Button Below </h6>
+                <br><a href="{% url 'profile' currentcustomer.id %}" class="btn btn-info btn-lg" role="button">Profile</a>
                 </div>
-
-                <div class="col-md-2">
-                    Hello {{currentcustomer.user}}!
+                <div class="col-5">
                     <img src="{{ currentcustomer.dp.url }}" alt="..." class="img-thumbnail">
                 </div>
             </div>
         </div>
-                
-        <div class="row2 d-flex flex-row-reverse" style="margin:50px">
+       
+        <div class="row3 d-flex flex-row-reverse" style="margin:50px">
             {% for car in cars %}
             <div class="col-sm">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ car.CarPicture.url }}" alt="Card image cap">
+                <div class="card bg-light mb-3" style="width: 20rem;">
+                    <img class="img-fluid" src="{{ car.CarPicture.url }}" style="width: 320px; height: 200px" alt="Card image cap">
                     <div class="card-body">
-                      <h5 class="card-title">{{ car.Model }}</h5>
-                      <p class="card-text">Manufacturer: {{ car.Manufacturer }}</p>
-                      <p class="card-text">Class: {{ car.Class }}</p>
-                      <p class="card-text">No. of Stocks: {{car.Stock_Number}}</p>
-                      <a href="{% url 'rentacar' car.id %}" class="btn btn-primary">Rent a car</a>
+                    <h4 class="card-title font-title"><b>{{ car.Model }}</b></h4>
+                      <p class="card-text font-style"><b>Manufacturer:</b> {{ car.Manufacturer }}</p>
+                      <p class="card-text font-style"><b>Class: </b>{{ car.Class }}</p>
+                      <p class="card-text font-style"><b>No. of Stocks: </b>{{car.Stock_Number}}</p>
+                      <a href="{% url 'rentacar' car.id %}" class="btn btn-primary btn-center">Rent a car</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>   
     </body>
-</div>
 {% endblock %}

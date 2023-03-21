@@ -6,6 +6,7 @@
     <h1>Car Catalogue</h1>
     {% for rental in rentals %}
             <a href="{% url 'finishrent' rental.id %}">Finish Rent</a>
+            <a href="{% url 'cancelrent' rental.id %}">Cancel Rent</a>
             <p> {{ rental.Renter}} </p>
             <p> {{ rental.Car }} </p>
             <p> {{ rental.ReturnDate }} </p>

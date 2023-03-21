@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include "nav.html" %}
+
+{% for car in object_list %}
+
+{{car.Manufacturer}}
+{{car.Model}}
+{{car.Maintenance}}
+
+{% endfor %}
+
+{% endblock %}

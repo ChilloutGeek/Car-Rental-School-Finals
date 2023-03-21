@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from customer.models import CustomerProfile
 from .models import Manufacturer,Car,MaintenanceEvent,Rental
 from django.views.generic.base import View
+from django.views.generic.list import ListView
+from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import RentalForm, FinishRentForm
 
@@ -17,11 +19,6 @@ class HomeRentalView(LoginRequiredMixin, View):
         form = RentalForm()
         currentcustomer = CustomerProfile.objects.get(user=self.request.user)
         
-        #search functionality
-        search_text = request.GET.get('search_text', None)
-        if search_text:
-            cars = Car.objects.get(Model__contains=search_text)
-
         return render(request, 'rental/rental.html', {'cars':cars, 'form':form, 'currentcustomer':currentcustomer})
 
     def post(self, request, pk):
@@ -42,7 +39,6 @@ class HomeRentalView(LoginRequiredMixin, View):
 class RentaCarView(LoginRequiredMixin, View):
     
     login_url = 'login'
-
 
     def get(self, request, pk):
         
@@ -99,6 +95,20 @@ class FinishRentView(LoginRequiredMixin, View):
             return redirect('rental')
 
 
+class SearchResultsView(ListView):
 
+    model = Car
+    template_name = 'rental/search_results.html'
 
-        
+    def get_queryset(self):
+        search_text = self.request.GET.get('search_text', None)
+        object_list = self.model.objects.all()
+        if search_text:
+            object_list = object_list.filter(Model__icontains=search_text)
+        return object_list
+
+class HardDeleteRentalView(DeleteView):
+    #Cancel Rent/ Delete Rent
+    model = Rental
+    success_url = "rental/home"
+    template_name= "rental/cancelrent.html"

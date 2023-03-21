@@ -18,13 +18,13 @@
         <div class="row3 d-flex flex-row-reverse" style="margin:50px">
             {% for car in cars %}
             <div class="col-sm">
-                <div class="card bg-light mb-3" style="width: 20rem;">
+                <div class="card-group bg-light mb-3" style="width: 20rem;">
                     <img class="img-fluid" src="{{ car.CarPicture.url }}" style="width: 320px; height: 200px" alt="Card image cap">
                     <div class="card-body">
                     <h4 class="card-title font-title"><b>{{ car.Model }}</b></h4>
-                      <p class="card-text font-style"><b>Manufacturer:</b> {{ car.Manufacturer }}</p>
-                      <p class="card-text font-style"><b>Class: </b>{{ car.Class }}</p>
-                      <p class="card-text font-style"><b>No. of Stocks: </b>{{car.Stock_Number}}</p>
+                      <p class="card-text font-sub"><b>Manufacturer:</b> {{ car.Manufacturer }}</p>
+                      <p class="card-text font-sub"><b>Class: </b>{{ car.Class }}</p>
+                      <p class="card-text font-sub"><b>No. of Stocks: </b>{{car.Stock_Number}}</p>
                       <a href="{% url 'rentacar' car.id %}" class="btn btn-primary btn-center">Rent a car</a>
                     </div>
                 </div>

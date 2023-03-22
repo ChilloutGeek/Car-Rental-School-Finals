@@ -9,3 +9,21 @@
     font-family:Verdana;
 
 }
+
+.my-background{
+    background-color: hsla(280, 0%, 90%, 0.9)
+}
+.my-border{
+    width: 1000px;
+    padding: 5px;
+    border: 2px solid black;
+    margin: 1;
+    text-align: center;
+    font-family: Verdana;
+}      
+.font-sub{
+    font-family: Verdana;
+}
+.font-title{
+    font-family: Franklin Gothic Medium;
+}

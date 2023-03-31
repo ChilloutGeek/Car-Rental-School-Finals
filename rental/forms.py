@@ -12,3 +12,4 @@ class FinishRentForm(forms.ModelForm):
     class Meta:
         model = Rental
         fields = ['FinishedRent']
+        widget = forms.TextInput(attrs={'readonly':'readonly'})

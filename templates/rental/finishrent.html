@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include "nav.html" %}
+
 <form method ="POST" action="">
     {% csrf_token %}
-    {{form}}
-    <input type="submit" name="rent a car">
+    <div class = "text-center">
+    <br><h4 class="text-center"><b>Finished Rent:  </h4></b>
+            {{form.FinishedRent}}
+    <br><br>
+    <button type="submit" class="btn btn-primary" value="Confirm">Confirm 
+
 </form>
+</div>
 {% endblock %}

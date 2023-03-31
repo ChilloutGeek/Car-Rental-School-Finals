@@ -110,5 +110,5 @@ class SearchResultsView(ListView):
 class HardDeleteRentalView(DeleteView):
     #Cancel Rent/ Delete Rent
     model = Rental
-    success_url = "rental/home"
+    success_url = ""
     template_name= "rental/cancelrent.html"

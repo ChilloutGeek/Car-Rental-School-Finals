@@ -6,16 +6,29 @@
 <div class="container-fluid">
     <div class="row" style="margin:20px">
         <div class="col-sm">
-            <h1><p class="font-title">Profile Page:</h1></p>
-            <h6><p class="font-sub">Welcome!</h6></p>
-            <h6><p class="font-sub">You can view the details of your Car Rentals in this page.</h6></p>
-            <a href="{% url 'cancelrent' rental.id %}" class="btn btn-info btn-lg" role="button">Edit Profile:</a>
-        </div>
-    </div>
+            <div class="row" style="margin:50px">
+                <div class="row d-flex flex-row-reverse my-border">
+                
+                    <div class="col-7">
+                    <h1><b> Welcome to your Profile {{profile.user}}! </h1> </b>
+                        <p class="font-sub"><b>Username: </b>{{profile.user}}</p> 
+                        <p class="font-sub"><b>About: </b>{{profile.about}}</p>
+                        <p class="font-sub"><b>Address: </b>{{profile.address}}</p>
+                        <p class="font-sub"><b>Credit Rating: </b>{{profile.credit_rating}}</p>
+                    <a href="{% url 'edit' profile.id %}" class="btn btn-info btn-lg" role="button">Edit Profile:</a>
+                    </div>
 
-    <div class="row" style="margin:20px">
+                    <div class="col-5">
+                        <img style="width: 300px; height: 300px" src="{{ profile.dp.url }}"  alt="DP Picture" class="rounded-circle">
+                    </div>
+                    
+                </div>
+            </div>
+        
+    <div class="row" style="margin: 20px">
+        <h1><b> Your Rented Cars: </h1> </b>
+
     {% for rental in rentals %}
-            
             <div class="col-sm-4">
                 <br><h3 class="font-title"><p>Rented Car:</h3></p>
                 <div class="card bg-light" style="width: 20rem;">

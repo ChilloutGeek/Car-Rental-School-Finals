@@ -1,4 +1,5 @@
 from django import forms
+from .models import CustomerProfile
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -37,4 +38,9 @@ class LoginForm(forms.Form):
         self.user = user
         
         return self.cleaned_data
+
+class EditForm(forms.ModelForm):
+    class Meta:
+        model = CustomerProfile
+        fields = ['dp', 'about', 'address', 'credit_rating']
 

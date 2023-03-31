@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from customer.models import CustomerProfile
 from rental.models import Car, Rental
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm, SignUpForm, EditForm
 
 # Create your views here.
 
@@ -57,3 +57,20 @@ def profile_page(request,pk):
     return render(request, 'customer/customer.html', {'rentals':rentals, 'profile':profile})
 
 
+def edit_page(request,pk):
+
+    profile = CustomerProfile.objects.get(user=request.user)
+
+    form = EditForm(instance=profile)
+
+    if request.method == "POST":
+        
+        form = EditForm(request.POST, request.FILES, instance=profile)
+        
+        if form.is_valid():
+        
+            form.save()
+            return redirect('rental')
+
+
+    return render(request, 'customer/edit.html', {'form':form, 'customer':profile})

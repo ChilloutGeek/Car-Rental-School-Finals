@@ -1,6 +1,6 @@
 
 .my-background{
-    background-color: hsla(280, 0%, 90%, 0.9)
+    background-color: hsla(0, 5%, 85%, 0.9)
 }
 .my-border{
     width: 1000px;
@@ -24,9 +24,9 @@
     padding-top: 1%;
 }
 
-
-.img-fluid.rounded-circle {
-    max-height: 300px;
-    max-width: 300px;
-    border-radius:50px;
-}
+.rounded-circle{
+    border:1px solid;
+    border-radius:50%;
+    width:300px;
+    height:300px;
+    }

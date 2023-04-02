@@ -17,11 +17,12 @@
             
             </div>
         </div>
-       
+        
         <div class="row3 d-flex flex-row-reverse" style="margin:50px">
+        
             {% for car in cars %}
     
-            <div class="card-group bg-light mb-6">
+            <div class="card-group bg-light mb-6 my-border">
                 <img class="img-fluid" src="{{ car.CarPicture.url }}" style="width: 320px; height: 200px" alt="Card image cap">
                 <div class="card-body">
                 <h4 class="card-title font-title"><b>{{ car.Model }}</b></h4>

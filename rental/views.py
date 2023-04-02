@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import RentalForm, FinishRentForm
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -110,5 +111,5 @@ class SearchResultsView(ListView):
 class HardDeleteRentalView(DeleteView):
     #Cancel Rent/ Delete Rent
     model = Rental
-    success_url = ""
+    success_url = reverse_lazy('rental')
     template_name= "rental/cancelrent.html"

@@ -10,20 +10,26 @@
         </div>
     </div>
 
-<div class="row d-flex flex-row-reverse" style="margin:50px">
-{% for car in object_list %}
-<div class="col-sm">
-    <div class="card-group bg-light mb-3" style="width: 20rem;">
-        <img class="img-fluid" src="{{ car.CarPicture.url }}" style="width: 320px; height: 200px" alt="Card image cap">
-        <div class="card-body">
-        <h4 class="card-title font-title"><b>{{ car.Model }}</b></h4>
-          <p class="card-text font-sub"><b>Manufacturer:</b> {{ car.Manufacturer }}</p>
-          <p class="card-text font-sub"><b>Maintenance: </b>{{ car.Maintenance }}</p>
+        <div class="col-sm">
+            {% for car in object_list %}
+            <div class="row" style="margin:20px">
+                <div class="row">
 
-        </div>
+                    <div class="text-center">
+                        <img class="img-fluid" src="{{ car.CarPicture.url }}" style="width: 400px; height: 300px" alt="Card image cap">
+                   </div>
+
+                   <div class="col-6 my-border">
+                    <h1 class="font-title"><b>{{ car.Model }}</b></h1>
+                    <p class="font-sub"><b>Manufacturer:</b> {{ car.Manufacturer }}</p>
+                    <p class="font-sub"><b>Maintenance: </b>{{ car.Maintenance }}</p>
+                </div>
+
+
+      
     </div>
 </div>
-
+        
 {% endfor %}
 </div>   
 {% endblock %}

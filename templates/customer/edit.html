@@ -1,6 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% include "nav.html" %}    
+
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-{{form}}
 
-<input type="submit" value="Confirm">   
+        <br><h2 class="font-title">Edit Profile:</h2>     
+    
+        <div class="form-group">
+            <label><b>Profile Picture </b></label>
+                {{ form.dp }}
+        </div>
+
+        <br><div class="form-group">
+            <label><b>About:  </b></label>
+                {{ form.about }}
+        </div>
+
+        <br><div class="form-group">
+            <label><b>Address: </b></label>
+                {{ form.address }}
+        </div>
+
+        <br><div class="form-group">
+            <label><b>Credit Rating: </b></label>
+                {{ form.credit_rating }}
+        </div>
+
+        <br><button type="submit" class="btn btn-primary" value="Confirm">Confirm 
 </form>
+
+
+{% endblock %}

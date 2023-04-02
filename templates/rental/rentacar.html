@@ -3,8 +3,21 @@
 {% include "nav.html" %}
 <form method ="POST" action="">
     {% csrf_token %}
-    <p> are you sure? </p>
-    {{form}}
-    <input type="submit" name="rent a car">
-</form>
+
+    <div class = "text-center">
+    <br>
+        <h5><b>You have Chosen:</b></h5>
+    <br>
+    <div class="form-group">
+        <label><b>Car: </b></label>
+            {{ form.Car }}
+    </div>
+    <br><div class="form-group">
+        <label><b>Renter:  </b></label>
+            {{ form.Renter }}
+    </div>
+    <br><br>
+    <h5><b>Are you Sure?</b></h5>
+    <button type="submit" class="btn btn-primary" value="Confirm">Confirm 
+    </div>
 {% endblock %}

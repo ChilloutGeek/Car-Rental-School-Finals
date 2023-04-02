@@ -3,32 +3,34 @@
     <body>
         {% include "nav.html" %}
         <div class="row" style="margin:50px">
-            <div class="row d-flex flex-row-reverse my-border">
-                <div class="col-7">
-                
-                <h1><b> Welcome {{currentcustomer.user}}! </h1> </b>
-                <h6>To view your profile, press the Profile Button Below </h6>
+            <div class="row">
+
+                <div class="col-4">
+                    <img style="width: 200px; height: 200px" src="{{ currentcustomer.dp.url }}"  alt="..." class="rounded-circle img-fluid">
+                </div>
+
+                <div class="col-6">
+                <h1 class="font-title"><b> Welcome {{currentcustomer.user}}! </h1> </b>
+                <h6 class="font-sub">To view your profile, press the Profile Button Below </h6>
                 <br><a href="{% url 'profile' currentcustomer.id %}" class="btn btn-info btn-lg" role="button">Profile</a>
                 </div>
-                <div class="col-5">
-                    <img style="width: 300px; height: 300px" src="{{ currentcustomer.dp.url }}"  alt="..." class="rounded-circle">
-                </div>
+            
             </div>
         </div>
        
         <div class="row3 d-flex flex-row-reverse" style="margin:50px">
             {% for car in cars %}
-            <div class="col-sm">
-                <div class="card-group bg-light mb-3" style="width: 20rem;">
-                    <img class="img-fluid" src="{{ car.CarPicture.url }}" style="width: 320px; height: 200px" alt="Card image cap">
-                    <div class="card-body">
-                    <h4 class="card-title font-title"><b>{{ car.Model }}</b></h4>
-                      <p class="card-text font-sub"><b>Manufacturer:</b> {{ car.Manufacturer }}</p>
-                      <p class="card-text font-sub"><b>Class: </b>{{ car.Class }}</p>
-                      <p class="card-text font-sub"><b>No. of Stocks: </b>{{car.Stock_Number}}</p>
-                      <a href="{% url 'rentacar' car.id %}" class="btn btn-primary btn-center">Rent a car</a>
-                    </div>
+    
+            <div class="card-group bg-light mb-6">
+                <img class="img-fluid" src="{{ car.CarPicture.url }}" style="width: 320px; height: 200px" alt="Card image cap">
+                <div class="card-body">
+                <h4 class="card-title font-title"><b>{{ car.Model }}</b></h4>
+                    <p class="card-text font-sub"><b>Manufacturer:</b> {{ car.Manufacturer }}</p>
+                    <p class="card-text font-sub"><b>Class: </b>{{ car.Class }}</p>
+                    <p class="card-text font-sub"><b>No. of Stocks: </b>{{car.Stock_Number}}</p>
+                    <a href="{% url 'rentacar' car.id %}" class="btn btn-primary btn-center">Rent a car</a>
                 </div>
+                
             </div>
             {% endfor %}
         </div>   

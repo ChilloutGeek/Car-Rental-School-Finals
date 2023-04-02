@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Rental, Car, CustomerProfile
-from django.forms import HiddenInput, CheckboxInput
+from django.forms import HiddenInput, CheckboxInput, DateTimeInput
 
 class RentalForm(forms.ModelForm):
     
@@ -10,9 +10,11 @@ class RentalForm(forms.ModelForm):
     
     class Meta:
         model = Rental
-        fields = ['Car', 'Renter']
+        fields = ['Car', 'Renter', 'ReturnDate']
 
-        
+        widgets = {
+            'ReturnDate': DateTimeInput(format='%m/%d/%Y %H:%M:%S', attrs={'type': 'datetime-local'}),
+        }
 
 class FinishRentForm(forms.ModelForm):
     class Meta:

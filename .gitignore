@@ -7,3 +7,14 @@
 
 media/
 *__pycache__/
+
+
+rental/
+*__pycache__/
+
+lrac/
+*__pycache__/
+
+customer/
+*__pycache__/
+

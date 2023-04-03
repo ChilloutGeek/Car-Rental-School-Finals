@@ -21,7 +21,7 @@ def increment_car(sender, instance, created, **kwargs):
         profile.save()
 
         car = instance.Car
-        car.Stock_Number += 1
+        car.Stock_Number -= 1
         car.save()
 
     else:

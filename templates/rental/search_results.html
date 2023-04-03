@@ -2,19 +2,20 @@
 {% block content %}
 {% include "nav.html" %}
 
-<div class="container-fluid">
-    <div class="row" style="margin:20px">
+<div class="container-fluid d-flex justify-content-center">
+    <div class="row">
         <div class="col-sm">
             <h1><p class="font-title text-center">Welcome!</h1></p>
             <h6><p class="font-sub text-center">You can view the details of the car in this page.</h6></p>
         </div>
     </div>
+</div>
 
+<div class="container-fluid d-flex justify-content-center">
+    <div class="row">
         <div class="col-sm">
-            {% for car in object_list %}
-            <div class="row" style="margin:20px">
-                <div class="row">
 
+                    {% for car in object_list %}
                     <div class="text-center">
                         <img class="img-fluid" src="{{ car.CarPicture.url }}" style="width: 400px; height: 300px" alt="Card image cap">
                    </div>
@@ -27,9 +28,10 @@
 
 
       
+        </div>
     </div>
 </div>
         
 {% endfor %}
-</div>   
+        </div>   
 {% endblock %}
